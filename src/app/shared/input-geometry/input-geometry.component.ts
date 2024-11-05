@@ -161,6 +161,11 @@ export class InputGeometryComponent implements OnChanges, OnDestroy, AfterViewIn
       return ;
     }
 
+    // for GeometryCollection
+    if (this.geometries[0].hasOwnProperty('type') && this.geometries[0].hasOwnProperty('geometries')) {
+      this.geometries = this.geometries[0]['geometries'];
+    }
+
     // Recreate the drawn items feature group
     if (this.responseFeatureGroup) {
       this.responseFeatureGroup.clearLayers();
